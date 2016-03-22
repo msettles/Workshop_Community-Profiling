@@ -1,0 +1,47 @@
+# dbcAmplicons validate
+dbcAmplicons validate -h
+dbcAmplicons validate -B dbcBarcodeLookupTable.txt -P PrimerTable.txt -S workshopSamplesheet.txt
+
+# dbcAmplicons preprocess
+dbcAmplicons preprocess -h
+dbcAmplicons preprocess -B dbcBarcodeLookupTable.txt -P PrimerTable.txt -S workshopSamplesheet.txt -1 Slashpile_only_R1.fastq.gz > preprocess.log
+cat preprocess.log
+
+# dbcAmplicons Join
+dbcAmplicons join -h
+dbcAmplicons join -t 16 -O Slashpile/16sV1V3/Slashpile-16sV1V3 -1 Slashpile/16sV1V3/Slashpile-16sV1V3_R1.fastq.gz > join-16sV1V3.log
+cat join-16sV1V3.log
+dbcAmplicons join -t 16 -O Slashpile/16sV4V5/Slashpile-16sV4V5 -1 Slashpile/16sV4V5/Slashpile-16sV4V5_R1.fastq.gz > join-16sV4V5.log
+cat join-16sV4-V5.log
+dbcAmplicons join -t 16 -O Slashpile/ITS1/Slashpile-ITS1 -1 Slashpile/ITS1/Slashpile-ITS1_R1.fastq.gz  > join-ITS1.log
+cat join-ITS1.log
+dbcAmplicons join -t 16 -O Slashpile/ITS2/Slashpile-ITS2 -1 Slashpile/ITS2/Slashpile-ITS2_R1.fastq.gz  > join-ITS2.log
+cat join-ITS2.log
+dbcAmplicons join -t 16 -O Slashpile/LSU/Slashpile-LSU -1 Slashpile/LSU/Slashpile-LSU_R1.fastq.gz > join-LSU.log
+cat join-LSU.log
+
+# dbcAmplicons classify
+dbcAmplicons classify -h
+dbcAmplicons classify -p 16 --rdpPath /home/ubuntu/src/RDPTools/classifier.jar --gene 16srrna -U Slashpile/16sV1V3/Slashpile-16sV1V3.extendedFrags.fastq.gz -O Slashpile/16sV1V3/Slashpile-16sV1V3
+dbcAmplicons classify -p 16 --rdpPath /home/ubuntu/src/RDPTools/classifier.jar --gene 16srrna -U Slashpile/16sV4V5/Slashpile-16sV4V5.extendedFrags.fastq.gz -O Slashpile/16sV4V5/Slashpile-16sV4V5
+dbcAmplicons classify -p 16 --rdpPath /home/ubuntu/src/RDPTools/classifier.jar --gene fungalits_unite -U Slashpile/ITS1/Slashpile-ITS1.extendedFrags.fastq.gz -O Slashpile/ITS1/Slashpile-ITS1
+dbcAmplicons classify -p 16 --rdpPath /home/ubuntu/src/RDPTools/classifier.jar --gene fungalits_unite -U Slashpile/ITS2/Slashpile-ITS2.extendedFrags.fastq.gz -O Slashpile/ITS2/Slashpile-ITS2
+dbcAmplicons classify -p 16 --rdpPath /home/ubuntu/src/RDPTools/classifier.jar --gene fungallsu -1 Slashpile/LSU/Slashpile-LSU.notCombined_1.fastq.gz -2 Slashpile/LSU/Slashpile-LSU.notCombined_2.fastq.gz -O Slashpile/LSU/Slashpile-LSU
+
+# dbcAmplicons classify
+dbcAmplicons abundance -h
+dbcAmplicons abundance -O Slashpile.results/16sV1V3 -F Slashpile/16sV1V3/Slashpile-16sV1V3.fixrank > abundance.16sV1V3.log
+dbcAmplicons abundance -O Slashpile.results/16sV1V3 -F Slashpile/16sV1V3/Slashpile-16sV1V3.fixrank --biom > abundance.16sV1V3.log
+cat abundance.16sV1V3.log
+dbcAmplicons abundance -O Slashpile.results/16sV4V5 -F Slashpile/16sV4V5/Slashpile-16sV4V5.fixrank > abundance.16sV4V5.log
+dbcAmplicons abundance -O Slashpile.results/16sV4V5 -F Slashpile/16sV4V5/Slashpile-16sV4V5.fixrank --biom  > abundance.16sV4V5.log
+cat abundance.16sV4V5.log
+dbcAmplicons abundance -O Slashpile.results/ITS1 -F Slashpile/ITS1/Slashpile-ITS1.fixrank  > abundance.ITS1.log
+dbcAmplicons abundance -O Slashpile.results/ITS1 -F Slashpile/ITS1/Slashpile-ITS1.fixrank --biom  > abundance.ITS1.log
+cat abundance.ITS1.log
+dbcAmplicons abundance -O Slashpile.results/ITS2 -F Slashpile/ITS2/Slashpile-ITS2.fixrank  > abundance.ITS2.log
+dbcAmplicons abundance -O Slashpile.results/ITS2 -F Slashpile/ITS2/Slashpile-ITS2.fixrank  --biom > abundance.ITS2.log
+cat abundance.ITS2.log
+dbcAmplicons abundance -O Slashpile.results/LSU -F Slashpile/LSU/Slashpile-LSU.fixrank > abundance.LSU.log
+dbcAmplicons abundance -O Slashpile.results/LSU -F Slashpile/LSU/Slashpile-LSU.fixrank --biom > abundance.LSU.log
+cat abundance.LSU.log

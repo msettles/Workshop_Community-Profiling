@@ -1,0 +1,33 @@
+# create a directory name src to install sotware
+mkdir src
+cd src/
+# install FLASH2
+git clone https://github.com/dstreett/FLASH2.git
+cd FLASH2/
+make
+sudo ln -s ~/src/FLASH2/flash2 /usr/local/bin/.
+# test installation, should see help documentation
+flash2 -h
+cd ..
+# install RDP
+sudo apt-get update
+sudo apt-get install openjdk-7-jdk
+sudo apt-get install ant
+git clone https://github.com/rdpstaff/RDPTools.git
+git submodule init
+cd RDPTools/
+git submodule init
+git submodule update
+make
+# test installation, should see help documentation for classify
+java -jar classifier.jar classify
+cd ..
+# install dbcAmplicons
+git clone https://github.com/msettles/dbcAmplicons.git
+cd dbcAmplicons/
+sudo python setup.py install
+# test installation, should see help documentation
+dbcAmplicons -h
+# install bowtie2
+sudo apt-get install bowtie2
+cd ~
