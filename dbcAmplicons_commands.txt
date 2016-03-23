@@ -29,19 +29,20 @@ dbcAmplicons classify -p 16 --rdpPath /home/ubuntu/src/RDPTools/classifier.jar -
 dbcAmplicons classify -p 16 --rdpPath /home/ubuntu/src/RDPTools/classifier.jar --gene fungallsu -1 Slashpile/LSU/Slashpile-LSU.notCombined_1.fastq.gz -2 Slashpile/LSU/Slashpile-LSU.notCombined_2.fastq.gz -O Slashpile/LSU/Slashpile-LSU
 
 # dbcAmplicons classify
+mkdir Slashpile.results
 dbcAmplicons abundance -h
 dbcAmplicons abundance -O Slashpile.results/16sV1V3 -F Slashpile/16sV1V3/Slashpile-16sV1V3.fixrank > abundance.16sV1V3.log
-dbcAmplicons abundance -O Slashpile.results/16sV1V3 -F Slashpile/16sV1V3/Slashpile-16sV1V3.fixrank --biom > abundance.16sV1V3.log
+dbcAmplicons abundance -S workshopSamplesheet.txt -O Slashpile.results/16sV1V3 -F Slashpile/16sV1V3/Slashpile-16sV1V3.fixrank --biom > abundance.16sV1V3.log
 cat abundance.16sV1V3.log
 dbcAmplicons abundance -O Slashpile.results/16sV4V5 -F Slashpile/16sV4V5/Slashpile-16sV4V5.fixrank > abundance.16sV4V5.log
-dbcAmplicons abundance -O Slashpile.results/16sV4V5 -F Slashpile/16sV4V5/Slashpile-16sV4V5.fixrank --biom  > abundance.16sV4V5.log
+dbcAmplicons abundance -S workshopSamplesheet.txt -O Slashpile.results/16sV4V5 -F Slashpile/16sV4V5/Slashpile-16sV4V5.fixrank --biom  > abundance.16sV4V5.log
 cat abundance.16sV4V5.log
 dbcAmplicons abundance -O Slashpile.results/ITS1 -F Slashpile/ITS1/Slashpile-ITS1.fixrank  > abundance.ITS1.log
-dbcAmplicons abundance -O Slashpile.results/ITS1 -F Slashpile/ITS1/Slashpile-ITS1.fixrank --biom  > abundance.ITS1.log
+dbcAmplicons abundance -S workshopSamplesheet.txt -O Slashpile.results/ITS1 -F Slashpile/ITS1/Slashpile-ITS1.fixrank --biom  > abundance.ITS1.log
 cat abundance.ITS1.log
 dbcAmplicons abundance -O Slashpile.results/ITS2 -F Slashpile/ITS2/Slashpile-ITS2.fixrank  > abundance.ITS2.log
-dbcAmplicons abundance -O Slashpile.results/ITS2 -F Slashpile/ITS2/Slashpile-ITS2.fixrank  --biom > abundance.ITS2.log
+dbcAmplicons abundance -S workshopSamplesheet.txt -O Slashpile.results/ITS2 -F Slashpile/ITS2/Slashpile-ITS2.fixrank  --biom > abundance.ITS2.log
 cat abundance.ITS2.log
 dbcAmplicons abundance -O Slashpile.results/LSU -F Slashpile/LSU/Slashpile-LSU.fixrank > abundance.LSU.log
-dbcAmplicons abundance -O Slashpile.results/LSU -F Slashpile/LSU/Slashpile-LSU.fixrank --biom > abundance.LSU.log
+dbcAmplicons abundance -S workshopSamplesheet.txt -O Slashpile.results/LSU -F Slashpile/LSU/Slashpile-LSU.fixrank --biom > abundance.LSU.log
 cat abundance.LSU.log
