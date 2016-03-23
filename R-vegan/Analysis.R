@@ -13,10 +13,10 @@ library(plotrix)
 ####################################################################
 ## Modify for the abundance files that come out of dbcAmplicons
 ####################################################################
-abundancefile <- "16sV1V3.abundance.txt"
+abundancefile <- "LSU.abundance.txt"
 # contains at least the SAMPLEID column from the dbcAmplicons samplesheet 
 metadatatable <- "slashpilesamplesheet.txt"
-output = "16sv1v3" # prefex for output
+output = "LSU" # prefex for output
 source_level <- "genus" # chosen in dbcAmplicons abundance
 ####################################################################
 
@@ -73,7 +73,6 @@ freqAbund <- sweep(abund,2,colSums(abund),"/")
 #keepRows <- ((apply(freqAbund > 0.00,1,sum,na.rm=TRUE) >= ncol(freqAbund)/2) | (apply(freqAbund >= 0.05, 1, sum,na.rm=TRUE) > 0))
 ### THE RULE: keep a taxon if it present in more than 2 sample at a level of at least 0.01% or in 1 sample at a level of at leat 0.05%
 keepRows <- ((apply(freqAbund >= 0.01,1,sum,na.rm=TRUE) > 2) | (apply(freqAbund >= 0.05, 1, sum,na.rm=TRUE) > 0))
-keepRows["Bacteria domain"] <- FALSE
 table(keepRows)
 
 
@@ -82,8 +81,8 @@ Other <- colSums(abund[!keepRows,])
 abund <- abund[keepRows,]
 level <- level[keepRows]
 taxon_name <- taxon_name[keepRows]
-abund <- rbind(abund,"Other Bacteria domain"=Other)
-level <- c(level,"Bacteria")
+abund <- rbind(abund,"Rare Members root"=Other)
+level <- c(level,"Rare Members")
 taxon_name <- c(taxon_name,"root")
 
 freqAbund <- sweep(abund,2,colSums(abund),"/")
